@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Macro-Regime Rotation — Tearsheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1d2126;--body:#4a4f55;--mut:#868b91;--faint:#aeb2b7;--line:#e6e5df;--hair:#efeee9;
+  --paper:#faf9f5;--card:#ffffff;--accent:#c2410c;--accsoft:#fbeee6;--pos:#1f7a4d;--neg:#c05545;
+  --disp:'Archivo',Helvetica,Arial,sans-serif;--sans:'Archivo',Helvetica,Arial,sans-serif;--mono:'Space Mono',ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);color:var(--body);background:var(--paper);font-size:14.5px;line-height:1.58;-webkit-font-smoothing:antialiased}
+.page{max-width:1080px;margin:0 auto;padding:26px 22px}
+/* masthead */
+.mast{padding:0;margin-bottom:12px}
+.mast .row1{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;padding:4px 2px 16px;border-bottom:1px solid var(--line);margin-bottom:14px}
+.mast .kick{font-family:var(--mono);font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--accent)}
+.mast h1{font-family:var(--disp);font-weight:700;font-size:33px;line-height:1;letter-spacing:-.8px;margin:10px 0 0;color:var(--ink);max-width:640px}
+.mast .meta{font-family:var(--mono);font-size:10.5px;line-height:1.8;color:var(--mut);text-align:right;white-space:nowrap}
+.mast .meta b{color:var(--ink);font-weight:400}
+.ticker{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.ticker .t{padding:14px 16px;background:var(--card);border:1px solid var(--line);border-radius:10px}
+.ticker .tv{font-family:var(--disp);font-weight:700;font-size:25px;color:var(--ink);line-height:1;letter-spacing:-.5px}
+.ticker .tl{font-family:var(--mono);font-size:9px;letter-spacing:.8px;text-transform:uppercase;color:var(--mut);margin-top:7px}
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;margin-top:12px}
+.mod{grid-column:span 12;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:0;overflow:hidden}
+.c8{grid-column:span 8}.c7{grid-column:span 7}.c6{grid-column:span 6}.c5{grid-column:span 5}.c4{grid-column:span 4}
+@media(max-width:760px){.c8,.c7,.c6,.c5,.c4{grid-column:span 12}.mast h1{font-size:25px}.ticker{grid-template-columns:repeat(2,1fr)}.mast .row1{flex-direction:column;align-items:flex-start}.mast .meta{text-align:left}}
+.hd{display:flex;align-items:center;gap:9px;padding:13px 20px 11px}
+.hd .no{font-family:var(--mono);font-weight:700;font-size:11px;color:var(--accent)}
+.hd h2{font-family:var(--disp);font-weight:600;font-size:14.5px;letter-spacing:.2px;color:var(--ink);margin:0}
+.bd{padding:2px 20px 18px}
+p{margin:0 0 11px}p:last-child{margin-bottom:0}
+b{color:var(--ink);font-weight:600}
+.lead{color:var(--mut);font-size:13px}
+.formula{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--accent);background:var(--accsoft);border-radius:8px;padding:11px 12px;text-align:center;margin:2px 0 12px}
+/* numbered items */
+.items{margin:0;padding:0;list-style:none;counter-reset:i}
+.items>li{counter-increment:i;position:relative;padding:11px 0 11px 40px;border-top:1px solid var(--hair)}
+.items>li:first-child{border-top:0;padding-top:2px}
+.items>li::before{content:counter(i,decimal-leading-zero);position:absolute;left:0;top:11px;font-family:var(--mono);font-weight:700;font-size:12px;color:var(--accent)}
+.items>li:first-child::before{top:2px}
+ul.tight{margin:0;padding:0;list-style:none}
+ul.tight li{position:relative;padding:8px 0 8px 18px;border-top:1px solid var(--hair)}
+ul.tight li:first-child{border-top:0}
+ul.tight li::before{content:"→";position:absolute;left:0;top:8px;color:var(--accent);font-family:var(--mono)}
+/* tables */
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:8px 10px;border-bottom:1px solid var(--hair);text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+th:first-child,td:first-child{text-align:left;font-family:var(--sans)}
+thead th{font-family:var(--mono);text-transform:uppercase;letter-spacing:.4px;font-size:9px;color:var(--mut);font-weight:700;border-bottom:1px solid var(--line)}
+tbody td:first-child{font-weight:600;color:var(--ink)}
+tbody tr:last-child td{border-bottom:0}
+tr.hi td{background:var(--accsoft)}
+.neg{color:var(--neg)}
+.tag{display:inline-block;font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;padding:2px 7px;border-radius:20px;background:var(--hair);color:var(--mut)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.split>div{padding:14px 20px 16px}.split>div:first-child{border-right:1px solid var(--line)}
+@media(max-width:760px){.split{grid-template-columns:1fr}.split>div:first-child{border-right:0;border-bottom:1px solid var(--line)}}
+.subh{font-family:var(--mono);font-size:9.5px;letter-spacing:.8px;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 8px}
+.foot{font-size:11px;line-height:1.65;padding:16px 4px 8px;color:var(--mut);margin-top:6px;border-top:1px solid var(--line)}
+.foot b{color:var(--ink);font-weight:700;font-family:var(--mono);font-size:9.5px;letter-spacing:.8px;text-transform:uppercase;display:block;margin-bottom:6px}
+</style></head><body>
+<div class="page">
+
+  <div class="mast">
+    <div class="row1">
+      <div>
+        <h1>Macro-Regime Sector &amp; Factor Rotation</h1>
+      </div>
+    </div>
+    <div class="ticker">
+      <div class="t"><div class="tv">9.0%</div><div class="tl">Strategy CAGR</div></div>
+      <div class="t"><div class="tv">0.45</div><div class="tl">Sharpe · rf 2%</div></div>
+      <div class="t"><div class="tv">+1.5%</div><div class="tl">Excess CAGR</div></div>
+      <div class="t"><div class="tv">895</div><div class="tl">Growth of 100</div></div>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <div class="mod c7">
+      <div class="hd"><span class="no">01</span><h2>Executive Summary</h2></div>
+      <div class="bd">
+        <p>The strategy holds a fixed 35% world-equity anchor and rotates the remaining 65% between one sector sleeve (30%) and one factor sleeve (35%), selected from each sleeve's historical performance in the prevailing macro regime. Selection is strictly point-in-time — only data available at the decision date is used.</p>
+        <p>Over 2001–2026 it returned <b>9.0%</b> annualised versus <b>7.5%</b> for MSCI World, at a higher Sharpe ratio (0.45 vs 0.36) and a shallower maximum drawdown (−51% vs −54%). The excess return is concentrated in weak regimes rather than spread evenly across the sample.</p>
+      </div>
+    </div>
+
+    <div class="mod c5">
+      <div class="hd"><span class="no">03</span><h2>Headline Metrics</h2></div>
+      <div class="bd" style="padding-top:6px">
+        <table>
+          <thead><tr><th>Metric</th><th>Strat.</th><th>MSCI</th></tr></thead>
+          <tbody>
+            <tr class="hi"><td>CAGR</td><td>9.0%</td><td>7.5%</td></tr>
+            <tr><td>Volatility</td><td>15.6%</td><td>15.4%</td></tr>
+            <tr><td>Sharpe</td><td>0.45</td><td>0.36</td></tr>
+            <tr><td>Max DD</td><td class="neg">−51%</td><td class="neg">−54%</td></tr>
+            <tr><td>Calmar</td><td>0.18</td><td>0.14</td></tr>
+            <tr><td>Growth 100</td><td>895</td><td>631</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="mod c12">
+      <div class="hd"><span class="no">02</span><h2>Methodology</h2></div>
+      <div class="split">
+        <div>
+          <p class="subh">Regimes &amp; Selection</p>
+          <p>Four Growth×Inflation states — Recovery, Goldilocks / Mid-cycle, Late-cycle / Stagflation, Contraction / Recession — from six macro indicators (three growth, one inflation, two liquidity / financial-conditions), with a two-month persistence filter. Each month every sleeve is scored by its average return within the current regime, computed on prior months only, and the top sector and factor are selected.</p>
+        </div>
+        <div>
+          <p class="subh">Weighting &amp; Backtest</p>
+          <div class="formula">MSCI World 35% + Sector 30% + Factor 35%</div>
+          <p>Monthly weighted returns compound into a growth-of-100 index and are compared with MSCI World Net TR. Rebalanced monthly, fully invested, gross of costs.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mod c12">
+      <div class="hd"><span class="no">04</span><h2>Annualised Return by Regime</h2></div>
+      <div class="bd" style="overflow:auto;padding-top:8px">
+        <table>
+          <thead><tr><th>ETF</th><th>Type</th><th>Recovery</th><th>Goldilocks</th><th>Late-cycle</th><th>Contraction</th></tr></thead>
+          <tbody>
+            <tr><td>MSCI World</td><td><span class="tag">Anchor</span></td><td>20%</td><td>8%</td><td class="neg">−6%</td><td>7%</td></tr>
+            <tr><td>IT</td><td><span class="tag">Sector</span></td><td>24%</td><td>6%</td><td class="neg">−5%</td><td>16%</td></tr>
+            <tr><td>Health Care</td><td><span class="tag">Sector</span></td><td>19%</td><td>8%</td><td class="neg">−3%</td><td>1%</td></tr>
+            <tr><td>Financials</td><td><span class="tag">Sector</span></td><td>22%</td><td>5%</td><td class="neg">−11%</td><td>4%</td></tr>
+            <tr><td>Energy</td><td><span class="tag">Sector</span></td><td>17%</td><td>21%</td><td class="neg">−4%</td><td class="neg">−7%</td></tr>
+            <tr><td>Consumer Staples</td><td><span class="tag">Sector</span></td><td>14%</td><td>11%</td><td class="neg">−4%</td><td>6%</td></tr>
+            <tr><td>Consumer Discretionary</td><td><span class="tag">Sector</span></td><td>25%</td><td>3%</td><td class="neg">−8%</td><td>12%</td></tr>
+            <tr><td>Industrials</td><td><span class="tag">Sector</span></td><td>22%</td><td>7%</td><td class="neg">−7%</td><td>8%</td></tr>
+            <tr><td>Quality</td><td><span class="tag">Factor</span></td><td>20%</td><td>8%</td><td class="neg">−4%</td><td>8%</td></tr>
+            <tr><td>Min Volatility</td><td><span class="tag">Factor</span></td><td>16%</td><td>9%</td><td class="neg">−4%</td><td>5%</td></tr>
+            <tr><td>Momentum</td><td><span class="tag">Factor</span></td><td>24%</td><td>12%</td><td class="neg">−3%</td><td>6%</td></tr>
+            <tr><td>Small Cap</td><td><span class="tag">Factor</span></td><td>24%</td><td>6%</td><td class="neg">−6%</td><td>13%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="mod c6">
+      <div class="hd"><span class="no">05</span><h2>Key Findings</h2></div>
+      <div class="bd">
+        <ol class="items">
+          <li><b>Regime conditioning improves return and risk.</b> +1.5 pp of annualised return over the benchmark with a higher Sharpe ratio and a smaller maximum drawdown.</li>
+          <li><b>Excess return concentrates in weak regimes.</b> Across 142 Late-cycle and Contraction months the strategy compounded ≈+75% versus +16% for the benchmark; benign regimes tracked the market.</li>
+          <li><b>Leadership is regime-dependent.</b> High-beta cyclicals lead Recovery and the rebound; defensives limit losses in Late-cycle. A single all-period winner misses this rotation.</li>
+          <li><b>Contraction is positive because markets lead the economy.</b> The deepest drawdowns fall one regime earlier, in Late-cycle (MSCI World −6%); by the time data confirm contraction, equities are already recovering — an early-recovery rally (IT +16%, Small Cap +13%, Discretionary +12%).</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="mod c6">
+      <div class="hd"><span class="no">06</span><h2>Methodological Lessons</h2></div>
+      <div class="bd">
+        <ol class="items">
+          <li><b>Look-ahead bias overstated results.</b> Selecting from the full sample and testing on it gave 11.8% / 0.62; the point-in-time rebuild fell to 9.0% / 0.45. The ~3 pp gap is unrealisable hindsight.</li>
+          <li><b>Return conventions must be consistent.</b> Returns are stored simple; a stray log transform (EXP()−1) distorted every downstream figure. Portfolio returns aggregate only on simple returns.</li>
+          <li><b>Turnover is a controllable cost.</b> A three-month minimum hold raised average holding length to ≈6 months and cut trading sharply, at ≈1 pp of CAGR (8.7% vs 9.8%).</li>
+          <li><b>Sparse regimes need explicit handling.</b> A regime's first appearance has no prior data; scores use error-handling with a defined fallback so nothing errors or blanks.</li>
+          <li><b>Auditability over complexity.</b> Fixed documented weights and one calculation sheet feeding backtest and metrics keep the model transparent.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="mod c6">
+      <div class="hd"><span class="no">07</span><h2>Implementation &amp; Deliverables</h2></div>
+      <div class="split" style="border-top:0">
+        <div>
+          <p class="subh">Trading Cadence</p>
+          <table>
+            <thead><tr><th>Version</th><th>CAGR</th><th>100→</th></tr></thead>
+            <tbody>
+              <tr><td>Monthly</td><td>9.0%</td><td>895</td></tr>
+              <tr><td>3-mo hold</td><td>8.7%</td><td>828</td></tr>
+              <tr><td>MSCI World</td><td>7.5%</td><td>631</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <p class="subh">Deliverables</p>
+          <ul class="tight">
+            <li><b>Excel model</b> — Data, Returns, Live allocation, Backtest, Metrics.</li>
+            <li><b>Interactive dashboard</b> — growth of 100, metrics, allocation over time, drawdowns, regime map, positioning.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="mod c6">
+      <div class="hd"><span class="no">08</span><h2>Recommended Next Steps</h2></div>
+      <div class="bd">
+        <ul class="tight">
+          <li><b>Out-of-sample validation</b> — derive weights on an earlier window, evaluate on a later one.</li>
+          <li><b>Transaction costs</b> — apply a per-switch cost; the 3-month hold should lead net.</li>
+          <li><b>Parameter sensitivity</b> — vary weight split, hold period and persistence to confirm stability.</li>
+          <li><b>Live signal</b> — current reading (Goldilocks; Energy + Momentum) updates as new data arrive.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mod c12">
+      <div class="hd"><span class="no">09</span><h2>Bottom-Line Takeaways</h2></div>
+      <div class="split">
+        <div>
+          <ol class="items">
+            <li><b>It's a downside-timing engine, not an alpha machine.</b> The ≈+1.5 pp per year comes from holding the right defensives before the drop and the right cyclicals into the recovery — not from being cleverer in good markets.</li>
+            <li><b>The Late-cycle → Contraction transition is where it's won or lost.</b> Roughly all of the outperformance is earned across those regimes; everything else roughly tracks the index.</li>
+            <li><b>Set honest expectations.</b> ≈9% a year with equity-like risk and a −51% worst case — it still falls hard in a bear market. This is a smarter equity allocation, not a hedge.</li>
+          </ol>
+        </div>
+        <div>
+          <ol class="items" start="4" style="counter-reset:i 3">
+            <li><b>Simplicity was enough.</b> A fixed 35 / 30 / 35 rule beat the benchmark with no optimisation — any added complexity should have to clear a high bar before it goes in.</li>
+            <li><b>The real deployment risks are regime misclassification and turnover.</b> For live use, favour the three-month hold and treat the 9.0% as an in-sample upper bound until it survives an out-of-sample test.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="foot">
+    <b>Methodology &amp; Disclaimer</b>
+    MSCI World universe, monthly, January 2001 – June 2026 (305 monthly returns). Point-in-time, regime-conditional selection; weights MSCI World 35% / best sector 30% / best factor 35%; simple monthly returns; geometric annualisation; Sharpe at a 2% risk-free rate; rebalanced monthly; gross of costs and taxes. Results are in-sample on historical data and do not constitute investment advice.
+  </div>
+
+</div>
+</body></html>
